@@ -1,0 +1,19 @@
+---
+# tasks file for nodejs (Ubuntu specific)
+
+- name: Add NodeSource APT key
+  apt_key: >
+    url=https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+    state=present
+  tags: nodejs
+
+- name: Add NodeSource APT repository
+  apt_repository: >
+    repo='deb https://deb.nodesource.com/node_0.10 trusty main'
+    state=present
+  tags: nodejs
+
+- name: Install Node.js packages
+  apt: name={{ item }} state=present update_cache=yes
+  with_items: nodejs_packages
+  tags: nodejs

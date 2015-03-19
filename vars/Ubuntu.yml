@@ -1,0 +1,6 @@
+---
+# vars file for nodejs (Ubuntu specific)
+
+nodejs_packages:
+  - nodejs
+  - build-essential
