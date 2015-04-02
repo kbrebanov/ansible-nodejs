@@ -7,13 +7,19 @@
     state=present
   tags: nodejs
 
-- name: Add NodeSource APT repository
+- name: Add NodeSource APT repository v0.10
   apt_repository: >
     repo='deb https://deb.nodesource.com/node_0.10 trusty main'
     state=present
   tags: nodejs
 
+- name: Add NodeSource APT repository v0.12
+  apt_repository: >
+    repo='deb https://deb.nodesource.com/node_0.12 trusty main'
+    state=present
+  tags: nodejs
+
 - name: Install Node.js packages
-  apt: name={{ item }} state=present update_cache=yes
+  apt: name={{ item }} state=present force=yes update_cache=yes
   with_items: nodejs_packages
   tags: nodejs
