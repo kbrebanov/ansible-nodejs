@@ -11,17 +11,31 @@ This role requires Ansible 1.4 or higher.
 Role Variables
 --------------
 
+| Name           | Default | Description                |
+|----------------|---------|----------------------------|
+| nodejs_version | 0.12.2  | Node.js version to install |
+
 Dependencies
 ------------
+
+None
 
 Example Playbook
 ----------------
 
-1) Install Node.js and npm
+Install Node.js and npm
+```
+- hosts: all
+  roles:
+    - { role: kbrebanov.nodejs }
+```
 
-    - hosts: all
-      roles:
-         - { role: nodejs }
+Install Node.js and npm specifying version
+```
+- hosts: all
+  roles:
+    - { role: kbrebanov.nodejs, nodejs_version: 0.10.38 }
+```
 
 License
 -------
