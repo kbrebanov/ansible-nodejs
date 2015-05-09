@@ -20,6 +20,11 @@
   tags: nodejs
 
 - name: Install Node.js packages
-  apt: name={{ item }} state=present force=yes update_cache=yes
+  apt: >
+    name={{ item }}
+    state=present
+    force=yes
+    update_cache=yes
+    cache_valid_time=3600
   with_items: nodejs_packages
   tags: nodejs
