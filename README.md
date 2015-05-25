@@ -15,7 +15,7 @@ Role Variables
 
 | Name           | Default | Description                |
 |----------------|---------|----------------------------|
-| nodejs_version | 0.12.2  | Node.js version to install |
+| nodejs_version | 0.12.4  | Node.js version to install |
 
 Dependencies
 ------------
