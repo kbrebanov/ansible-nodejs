@@ -20,7 +20,7 @@ Role Variables
 Dependencies
 ------------
 
-None
+- kbrebanov.git
 
 Example Playbook
 ----------------
