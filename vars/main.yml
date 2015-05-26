@@ -1,2 +1,7 @@
 ---
 # vars file for nodejs
+
+nvm_version: 0.25.3
+nvm_repo: https://github.com/creationix/nvm.git
+nvm_download_dir: /opt/nvm
+nvm_install_dir: /usr/local/nvm

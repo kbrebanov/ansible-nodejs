@@ -12,3 +12,60 @@
 - include: Ubuntu.yml
   when: ansible_distribution == "Ubuntu"
   tags: nodejs
+
+- name: Create nvm download directory
+  file: >
+    path={{ nvm_download_dir }}
+    owner=root
+    group=root
+    mode=0755
+    state=directory
+  tags: nodejs
+
+- name: Create nvm install directory
+  file: >
+    path={{ nvm_install_dir }}
+    owner=root
+    group=root
+    mode=0755
+    state=directory
+  tags: nodejs
+
+- name: Download nvm
+  git: >
+    repo={{ nvm_repo }}
+    dest={{ nvm_download_dir }}
+    version=v{{ nvm_version }}
+  tags: nodejs
+
+- name: Add nvm to global shell profile
+  template: >
+    src=nvm.sh.j2
+    dest=/etc/profile.d/nvm.sh
+    owner=root
+    group=root
+    mode=0644
+  tags: nodejs
+
+- name: Install Node.js
+  shell: "source /etc/profile.d/nvm.sh && nvm install {{ nodejs_version }}"
+  args:
+    executable: /bin/bash
+    creates: "{{ nvm_install_dir }}/versions/node/v{{ nodejs_version }}/bin/node"
+  tags: nodejs
+
+- name: Get current default Node.js
+  shell: "source /etc/profile.d/nvm.sh && nvm current"
+  args:
+    executable: /bin/bash
+  register: default_nodejs
+  ignore_errors: true
+  changed_when: false
+  tags: nodejs
+
+- name: Set default Node.js
+  shell: "source /etc/profile.d/nvm.sh && nvm alias default {{ nodejs_version }}"
+  args:
+    executable: /bin/bash
+  when: default_nodejs.stdout != "v{{ nodejs_version }}"
+  tags: nodejs

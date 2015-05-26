@@ -2,5 +2,5 @@
 # vars file for nodejs (Ubuntu specific)
 
 nodejs_packages:
-  - nodejs={{ nodejs_version }}-*
   - build-essential
+  - libssl-dev
