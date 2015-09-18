@@ -1,7 +1,7 @@
 nodejs
 ======
 
-[![Ansible Galaxy](https://img.shields.io/badge/galaxy-kbrebanov.nodejs-660198.svg)](https://galaxy.ansible.com/list#/roles/3286)
+[![Ansible Role](https://img.shields.io/ansible/role/3286.svg)](https://galaxy.ansible.com/list#/roles/3286)
 
 Installs Node.js and npm
 
